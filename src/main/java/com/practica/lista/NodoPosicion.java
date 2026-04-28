@@ -13,26 +13,19 @@ import com.practica.genericas.Coordenada;
 public class NodoPosicion {
 	private Coordenada coordenada;	
 	private int numPersonas;
-	private NodoPosicion siguiente;
+	//private NodoPosicion siguiente;
 	
 	
 	public NodoPosicion() {
 		super();
-		siguiente = null;
 	}
 
-	
-	
-	
-	public NodoPosicion(Coordenada coordenada,  int numPersonas, NodoPosicion siguiente) {
+
+	public NodoPosicion(Coordenada coordenada,  int numPersonas) {
 		super();
 		this.coordenada = coordenada;		
 		this.numPersonas = numPersonas;
-		this.siguiente = siguiente;
 	}
-
-
-
 
 	public Coordenada getCoordenada() {
 		return coordenada;
@@ -50,12 +43,29 @@ public class NodoPosicion {
 		this.numPersonas = numPersonas;
 	}
 
-	public NodoPosicion getSiguiente() {
-		return siguiente;
+	public void combine(NodoPosicion other) {
+		if (this.coordenada.equals(other.coordenada))
+			this.numPersonas += other.numPersonas;
 	}
 
-	public void setSiguiente(NodoPosicion siguiente) {
-		this.siguiente = siguiente;
+	public NodoPosicion(NodoPosicion np) {
+		this.coordenada = new Coordenada(np.coordenada);
+		this.numPersonas = np.numPersonas;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (obj == null || getClass() != obj.getClass()) {
+			return false;
+		}
+
+		NodoPosicion other = (NodoPosicion) obj;
+		return this.coordenada.equals(other.coordenada);
+	}
+
 	
 }

@@ -56,5 +56,10 @@ public class Coordenada {
 			return false;
 		return true;
 	}
+
+	public Coordenada(Coordenada co) {
+		this.latitud = co.latitud;
+		this.longitud = co.longitud;
+	}
 	
 }
