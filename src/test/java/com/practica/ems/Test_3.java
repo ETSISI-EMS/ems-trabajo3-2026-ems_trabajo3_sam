@@ -30,12 +30,12 @@ public class Test_3 {
 		assertNotNull(contactosCovid.getListaContactos());		
 	}
 	
-	@DisplayName("Comprobamos la primera localización del fichero")
-	@Test
-	void test_2 () {
-		assertEquals(contactosCovid.getListaContactos().getPrimerNodo(), "25/05/2021;16:30");		
-	}
-	
+		@DisplayName("Comprobamos la primera localización del fichero")
+		@Test
+		void test_2 () {
+			assertEquals(contactosCovid.getListaContactos().getPrimerNodo(), "25/05/2021;16:30");
+		}
+
 	@DisplayName("Comprobamos el número total de nodos temporales")
 	@Test
 	void test_3 () {
