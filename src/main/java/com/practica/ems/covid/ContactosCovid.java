@@ -106,9 +106,6 @@ public class ContactosCovid {
 			if (datos[0].equals("PERSONA")) {
 				this.poblacion.addPersona(Persona.crearPersona(datos));
 			}else if (datos[0].equals("LOCALIZACION")) {
-				if (datos.length != Constantes.MAX_DATOS_LOCALIZACION) {
-					throw new EmsInvalidNumberOfDataException("El número de datos para LOCALIZACION es menor de 6");
-				}
 				PosicionPersona pp = PosicionPersona.crearPosicionPersona(datos);
 				this.localizacion.addLocalizacion(pp);
 				this.listaContactos.insertarNodoTemporal(pp);
