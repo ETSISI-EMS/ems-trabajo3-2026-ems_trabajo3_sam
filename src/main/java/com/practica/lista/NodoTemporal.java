@@ -1,6 +1,9 @@
 package com.practica.lista;
 
 import com.practica.genericas.FechaHora;
+import com.practica.genericas.PosicionPersona;
+
+import java.util.LinkedList;
 
 
 /**
@@ -9,32 +12,54 @@ import com.practica.genericas.FechaHora;
  *
  */
 public class NodoTemporal {
-	private NodoPosicion listaCoordenadas;
+	private LinkedList<NodoPosicion> listaCoordenadas;
 	private FechaHora fecha;
-	private NodoTemporal siguiente;
 	
 	
 	public NodoTemporal() {
 		super();
-		siguiente = null;
-		listaCoordenadas=null;	
+		//siguiente = null;
+		listaCoordenadas = new LinkedList<>();
 	}
-	public NodoPosicion getListaCoordenadas() {
-		return listaCoordenadas;
+
+	public static NodoTemporal nodoFromPosition(PosicionPersona p){
+		NodoTemporal nodoTemporal = new NodoTemporal();
+		nodoTemporal.setFecha(p.getFechaPosicion());
+		NodoPosicion nodoPosicion = new NodoPosicion(p.getCoordenada(), 1); //insertas una persona
+		nodoTemporal.listaCoordenadas.add(nodoPosicion);
+		return nodoTemporal;
 	}
-	public void setListaCoordenadas(NodoPosicion listaCoordenadas) {
-		this.listaCoordenadas = listaCoordenadas;
+
+	public void combineNodes(NodoTemporal other) {
+		if (!this.fecha.equals(other.fecha)) {
+			return;
+		}
+
+		for (NodoPosicion it: other.listaCoordenadas) {
+			int pos = listaCoordenadas.indexOf(it);
+
+			if (pos == -1) {
+				listaCoordenadas.add(new NodoPosicion(it));
+			} else {
+				listaCoordenadas.get(pos).combine(it);
+			}
+		}
 	}
+
 	public FechaHora getFecha() {
 		return fecha;
 	}
 	public void setFecha(FechaHora fecha) {
 		this.fecha = fecha;
 	}
-	public NodoTemporal getSiguiente() {
-		return siguiente;
+
+	public LinkedList<NodoPosicion> getListaCoordenadas() {
+		return listaCoordenadas;
 	}
-	public void setSiguiente(NodoTemporal siguiente) {
-		this.siguiente = siguiente;
-	}	
+
+	@Override
+	public String toString() {
+		return fecha.getFecha().toString() + ";" + fecha.getHora().toString();
+	}
+
 }
