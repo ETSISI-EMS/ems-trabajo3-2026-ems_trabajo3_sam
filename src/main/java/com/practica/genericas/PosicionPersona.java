@@ -41,7 +41,7 @@ public class PosicionPersona {
 		String fecha = datos[2];
 		String hora = datos[3];
 		FechaHora fechaPosicion = FechaHora.parseFecha(fecha,hora);
-		Coordenada coordenada = new Coordenada(Integer.parseInt(datos[4]), Integer.parseInt(datos[5]));
+		Coordenada coordenada = new Coordenada(Float.parseFloat(datos[4]), Float.parseFloat(datos[5]));
 		return new PosicionPersona(documento, fechaPosicion, coordenada);
 	}
 
