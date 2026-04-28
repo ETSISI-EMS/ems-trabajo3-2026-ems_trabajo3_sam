@@ -61,5 +61,29 @@ public class PosicionPersona {
 	
 		return cadena;
 	}
-		
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+		if (obj == this) {
+			return true;
+		}
+		if (!(obj instanceof PosicionPersona)) {
+			return false;
+		}
+
+		PosicionPersona posicionPersona = (PosicionPersona) obj;
+		return posicionPersona.documento.equals(this.documento) &&
+				posicionPersona.fechaPosicion.equals(this.fechaPosicion);
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 23;
+		int result = 1;
+		result = prime * result + ((documento == null) ? 0 : documento.hashCode());
+		result = prime * result + ((fechaPosicion == null) ? 0 : fechaPosicion.hashCode());
+		return result;
+	}
 }

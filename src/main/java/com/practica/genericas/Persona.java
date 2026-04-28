@@ -23,7 +23,11 @@ public class Persona {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
-	public static Persona crearPersona(String[] datos) throws EmsInvalidNumberOfDataException {
+	public Persona(String documento) {
+		this.documento = documento;
+	}
+
+    public static Persona crearPersona(String[] datos) throws EmsInvalidNumberOfDataException {
 		if (datos.length != Constantes.MAX_DATOS_PERSONA) {
 			throw new EmsInvalidNumberOfDataException("El número de datos para PERSONA es menor de 8");
 		}
@@ -113,4 +117,22 @@ public class Persona {
 
 		return cadena;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+		if (this.getClass() != obj.getClass()) {
+			return false;
+		}
+		Persona other = (Persona) obj;
+		return documento.equals(other.documento);
+	}
+
+	@Override
+	public int hashCode() {
+		return documento.hashCode();
+	}
+
 }
