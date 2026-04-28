@@ -149,9 +149,10 @@ public class ListaContactos {
 		if(this.size==0)
 			return 0;
 		int cont = 0;
-		while(lista!=null) {
-			if(lista.getFecha().compareTo(inicio)>=0 && lista.getFecha().compareTo(fin)<=0) {
-				NodoPosicion nodo = lista.getListaCoordenadas();
+		NodoTemporal actual = this.lista;
+		while(actual!=null) {
+			if(actual.getFecha().compareTo(inicio)>=0 && actual.getFecha().compareTo(fin)<=0) {
+				NodoPosicion nodo = actual.getListaCoordenadas();
 				while(nodo!=null) {
 					if(personas){
 						cont = cont + nodo.getNumPersonas();
@@ -159,10 +160,8 @@ public class ListaContactos {
 						cont = cont + 1;
 					nodo = nodo.getSiguiente();
 				}
-				lista = lista.getSiguiente();
-			}else {
-				lista=lista.getSiguiente();
 			}
+			actual = actual.getSiguiente();
 		}
 		return cont;
 	}
