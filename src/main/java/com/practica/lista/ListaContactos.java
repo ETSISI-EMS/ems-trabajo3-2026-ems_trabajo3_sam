@@ -44,8 +44,6 @@ public class ListaContactos {
 			insertInPosition(nodoT);
 		}
 
-
-
 	}
 
 	
@@ -81,23 +79,12 @@ public class ListaContactos {
 						cont++;
 					}
 				}
-		NodoTemporal actual = this.lista;
-		while(actual!=null) {
-			if(actual.getFecha().compareTo(inicio)>=0 && actual.getFecha().compareTo(fin)<=0) {
-				NodoPosicion nodo = actual.getListaCoordenadas();
-				while(nodo!=null) {
-					if(personas){
-						cont = cont + nodo.getNumPersonas();
-					}else
-						cont = cont + 1;
-					nodo = nodo.getSiguiente();
-				}
 			}
-			actual = actual.getSiguiente();
 		}
 
 		return cont;
 	}
+
 	public int numPersonasEntreDosInstantes(FechaHora inicio, FechaHora fin) {
 		return recorrerEntreInstantes(inicio, fin, true);
 	}
